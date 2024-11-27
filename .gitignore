@@ -7,3 +7,4 @@ env/
 .venv/
 Dockerfile.*
 .DS_Store
+metar_data.csv

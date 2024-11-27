@@ -2,7 +2,6 @@ import csv
 import re
 
 def extract_metar_data(metar):
-    # Regex ile istenen alanları çıkar
     metar_pattern = re.compile(
         r"(?P<report_time>\d{12})\s"  # Rapor zamanı (YYYYMMDDHHMM)
         r"(METAR|SPECI)(?:\sCOR)?"  # METAR veya SPECI, opsiyonel COR
@@ -22,7 +21,7 @@ def extract_metar_data(metar):
         # Rapor zamanı tarih ve saat olarak ayır
         data["report_date"] = data["report_time"][:8]  # YYYYMMDD
         data["report_hour"] = data["report_time"][8:]  # HHMM
-        del data["report_time"]  # Artık bu anahtar kullanılmayacak
+        del data["report_time"]
 
         return {
             "Rapor Tarihi (YYYYMMDD)": data["report_date"],
@@ -56,7 +55,7 @@ def save_to_csv(data, filename="metar_data.csv"):
         writer.writerows(data)
 
 if __name__ == "__main__":
-    input_file = "metar_reports.txt"  # METAR raporlarının bulunduğu dosya
+    input_file = "metar_reports.txt"
     extracted_data = []
 
     try:
